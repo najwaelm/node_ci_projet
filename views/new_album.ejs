@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--lien boostrap : https://www.bootstrapcdn.com/-->
+
+<html lang="en">
+
+<head>
+    <%- include('partials/head') %>
+</head>
+
+<body>
+    <%- include('partials/nav') %>
+
+        <div class="container">
+            <div class="row mt-4">
+                <div class="col">
+                    <h1>Nouvel Album</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <form method="POST" action="/album/create">
+                        <div class="form-group">
+                            <label>Titre</label>
+                            <input 
+                            class="form-control"
+                            type="text" 
+                            name="albumTitle" 
+                            placeholder="Titre de votre nouvel album"
+                            autofocus>
+                        </div>
+
+                        <!--Editer après la gestion d'erreur(TRY&CATCH) -->
+
+                                <!-- decommenter apres avoir déclarer erros dans le controller Album_controller-->
+                                <% if (errors.length) { %>
+
+                        <div class="alert
+                        alert-danger mt-4 mb-2"
+                        role="alert"><!--Attention votre formulaire est vide-->%= errors[0] % <!--Commenter si error définie-->
+                                    
+                                <!---->
+                        </div>
+
+                                <% } %>
+
+                        <button type="submit" class="btn btn-primary mt-4">Crée</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <%- include('partials/script') %>
+</body>
+
+</html>

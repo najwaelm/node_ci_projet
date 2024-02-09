@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--lien boostrap : https://www.bootstrapcdn.com/-->
+
+<html lang="en">
+
+<head>
+    <%- include('partials/head') %>
+</head>
+
+<body>
+    <%- include('partials/nav') %>
+
+        <div class="container">
+            <div class="row mt-4">
+                <div class="col">
+                    <a href="/" class="mt-4">&lt; Retour</a>
+                    <!--<h1 class="mb-4">Album</h1>-->
+                    <h1 class="mb-4">
+                        <%= album.title %>
+                    </h1>
+                </div>
+            </div>
+
+            <!--gestion de nos images-->
+            <div class="row mb-4"></div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Ajouter une image
+                        </h5>
+                        <form method="POST" action="/album/<%= album._id %>" class="form-inline"
+                            enctype="multipart/form-data">
+                            <!-- enctype="multipart/form-data = ce formulaire sera capable d'envoyer des fichiers (images)"-->
+
+                            <input type="file" name="image" class="form-control-file">
+                            <button type="submit" class="btn btn-primary">Ajouter</button>
+                        </form>
+
+
+                        <!--affichage des erreurs du controller addImage-->
+                        <% if(errors.length){%>
+                            <div class="alert alert-danger mt-4 mb-2" role="alert">
+                                <%= errors[0] %>
+                            </div>
+                            <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Afficher les images de nos album-->
+        <div class="row row-horizon">
+            <% album.images.forEach((image, index)=> { %>
+                <div class="w-25 col-sm-3">
+                    <div class="card" style="width: 18rem; margin-top: 20px; height: 20rem !important;">
+                        <img src="\uploads\<%= album._id %>\<%= image %>" alt="<%= image %>" class="card-img-top" style="object-fit:contain; height:300px; width:auto">
+                        <div class="card-body">
+                            <h5>
+                                <%= image %>
+                            </h5>
+                            <!--<a href="#">Supprimer</a>-->
+                            <a href="/album/<%=album._id %>/delete/<%= index %>">Supprimer</a>
+                            <!---Les images étant stocké dans un tab image[], indice va nous permettre d recup l'indice de chaque photo-->
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+
+
+
+
+        </div>
+
+        <%- include('partials/script') %>
+</body>
+
+</html>

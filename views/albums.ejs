@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--lien boostrap : https://www.bootstrapcdn.com/-->
+
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/nav') %>
+
+        <!--Apres new_album.ejs-->
+        <div class="container">
+            <div class="row mt-4">
+                <div class="col">
+                    <h1>Mes Albums</h1>
+                    <a href="/album/create"
+                    class="btn btn-primary mt-2 mb-4">
+                    Nouvel album
+                </a>
+                </div>
+            </div>
+                <!--Apres gestion du routing-->
+                <div>
+                    <div class="col col-x-12 col-sm-4">
+                        <ul class="list-group">
+
+                                <!--Commenter jusqu'à afficher liste albums bdd-->
+                                <% albums.forEach((album) => { %> 
+        
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <!--<a href="#">Album</a>-->
+
+                                <!--<a href="#">%= album.title %</a>-->
+
+                                    <!--Une x le controller pour album mis en place-->
+                                    <a href="/album/<%= album._id %>"><%= album.title %></a>
+
+                            <!--<a href="#" class="link-light badge bg-danger rounded-pill">
+                                Supprimer</a>-->
+                                <a href="/album/<%= album._id %>/delete" class="link-light badge bg-danger">Supprimer</a>
+                        </li>
+                                    <% }) %>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+    <%- include('partials/script') %>
+</body>
+</html>
