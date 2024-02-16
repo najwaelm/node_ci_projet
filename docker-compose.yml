@@ -1,0 +1,27 @@
+# Spécifie la version de Docker Compose à utiliser
+version: '3'
+
+# Définit les services de votre application
+services:
+  # Le service 'app' est votre application Node.js
+  app:
+    # Construit l'image Docker pour l'application à partir du Dockerfile dans le répertoire courant (.)
+    build: .
+    # Expose le port 8080 de l'application à l'hôte
+    ports:
+      - "8080:8080"
+    # Crée un lien vers le service 'db' (MongoDB)
+    links:
+      - db
+    # Définit les variables d'environnement pour l'application
+    environment:
+      # L'URL de la base de données MongoDB
+      - DATABASE_URL=mongodb://db:27017/phototheque
+
+  # Le service 'db' est votre base de données MongoDB
+  db:
+    # Utilise l'image Docker 'mongo:latest' pour ce service
+    image: mongo:latest
+    # Expose le port 27017 de MongoDB à l'hôte
+    ports:
+      - "27017:27017"
