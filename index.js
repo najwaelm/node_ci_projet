@@ -7,14 +7,19 @@ const mongoose = require("mongoose");
 const app = express();
 const path = require("path");
 
+const DATABASE_URL = process.env.DATABASE_URL || 'mongodb://localhost:27017/phototheque';
+
 //3
 const flash = require("connect-flash");
 
 //récupération des routes exportées depuis "../roues/album_routes"
 const albumRoutes = require("./routes/albums_routes");
+const { error } = require("console");
 
 //3 - connexion à notre bdd pour la création de notre collection "album"
-mongoose.connect("mongodb://127.0.0.1:27017/node_ci_project");
+mongoose.connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .catch(error => console.log('Error connecting to MongoDB:', error));  
+;
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
