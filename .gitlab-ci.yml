@@ -8,6 +8,7 @@ services:
 #Définit les étapes du pipeline
 stages:
   - build
+  - test
 
 #Définit des variables d'environnement pour Docker
 variables:
@@ -30,6 +31,16 @@ build:
       - ./
       
 
-
+# Job 'tests_unitaires' pour exécuter les tests unitaires de l'application
+tests_unitaires:
+  stage: test
+  script:
+    - docker-compose up --build --exit-code-from test
+  artifacts:
+    reports:
+      junit: test-results/resultat_tests.xml
+    paths:
+      - test-results/resultat_tests.xml
+    when: always
 
   
