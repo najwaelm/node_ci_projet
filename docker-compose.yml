@@ -25,3 +25,21 @@ services:
     # Expose le port 27017 de MongoDB à l'hôte
     ports:
       - "27017:27017"
+
+#service pour executer les tests
+  test:
+    #construire le service à partir du Dockerfile dans le répertoire courant
+    build: .
+    #Exétute un série de commandes pour installer les dépendnces et exécuter les tests
+    command: sh -c "npm install && npm install --save-dev jest-junit && npm test -- --reporters=default --reporters=jest-junit"
+    #Lie ce service au service de base de données 'db'
+    links:
+      - db
+    #Définit les variables d'environnement pour le service
+    environment:
+      #L'URL de la base de données MongoDB
+      - DATABASE_URL=mongodb://db:27017/phototheque
+    #Montages de volumes pour le code de l'application et les resultats des tests
+    volumes:
+      - .:/app
+      - ./test-results:/app/test-results

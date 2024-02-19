@@ -45,3 +45,26 @@ docker-compose up -d
 -d : en détaché (en arrière plan)
 
 13 Editer le fichier de config .gitlab-ci.yml
+
+14 installer Jest : pour tester le code en Js
+
+```
+npm install --save-dev jest
+```
+
+15 installer supertest : bibliothèque de test pour Node.js
+
+```
+npm install --save-dev supertest
+```
+
+16 installer sinon : bibliothèque de test pour JavaScript qui fournit des fonctionnalités pour les tests unitaires, comme les espions, les stubs et les mocks.
+
+```
+npm install sinon
+```
+
+17 Editer le ficher index.test.js ( nous souhaitions tester index.js)
+
+* le ficher à tester dois être en [nom_fichier].test.js
+* resoudre les différents dans index.test.js

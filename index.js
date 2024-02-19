@@ -14,7 +14,7 @@ const flash = require("connect-flash");
 const albumRoutes = require("./routes/albums_routes");
 
 //3 - connexion à notre bdd pour la création de notre collection "album"
-mongoose.connect("mongodb://127.0.0.1:27017/phototheque");
+mongoose.connect("mongodb://127.0.0.1:27017/node_ci_project");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -59,3 +59,5 @@ app.use((req, res) => {
 app.listen(3000, () => {
   console.log("Application lancée sur le port 3000");
 });
+
+module.exports = app;
