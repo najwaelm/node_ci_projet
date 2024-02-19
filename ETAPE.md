@@ -43,3 +43,5 @@ docker-compose up -d
 ```
 
 -d : en détaché (en arrière plan)
+
+13 Editer le fichier de config .gitlab-ci.yml
