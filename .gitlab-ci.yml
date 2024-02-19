@@ -1,26 +1,26 @@
-#Utilisation de l'image Docker 'docker/compose:latest' pour exécuter les jobs de ce pipeline
+# Utilise l'image Docker 'docker/compose:latest' pour exécuter les jobs de ce pipeline
 image: docker/compose:latest
 
-#Utilse le service 'docker:dind' (Docker in Docker) pour permettre l'exécution de Docker à l'intérieur des jobs
+# Utilise le service 'docker:dind' (Docker in Docker) pour permettre l'exécution de Docker à l'intérieur des jobs
 services:
   - docker:dind
 
-#Définit les étapes du pipeline
+# Définit les étapes du pipeline
 stages:
   - build
   - test
+  - debug
 
-#Définit des variables d'environnement pour Docker
+# Définit des variables d'environnement pour Docker
 variables:
   DOCKER_DRIVER: overlay2
-  #Cette ligne définit le driver de stockage Docker à utiliser. overlay2 est un driver de stockage Docker qui fournit des fonctionnalités de système de fichiers en couches. Il est généralement recommandé pour une utilisation avec Docker.
   DOCKER_TLS_CERTDIR: ""
-  #Cette ligne désactive la génération de certificats TLS par Docker. Par défaut, Docker génère des certificats TLS et les stocke dans le répertoire spécifié par DOCKER_TLS_CERTDIR. En définissant cette variable à une chaîne vide, vous indiquez à Docker de ne pas générer de certificats TLS. Cela peut être utile si vous n'avez pas besoin de la sécurité supplémentaire fournie par TLS pour votre pipeline CI/CD.
 
-  #Exécuter 'docker info' avant chaque job pour afficher des informations sur l'environement Docker
+# Exécute 'docker info' avant chaque job pour afficher des informations sur l'environnement Docker
 before_script:
   - docker info
-#job 'build' pour construire les images Docker de l'application
+
+# Job 'build' pour construire les images Docker de l'application
 build:
   stage: build
   script:
@@ -29,7 +29,6 @@ build:
   artifacts:
     paths:
       - ./
-      
 
 # Job 'tests_unitaires' pour exécuter les tests unitaires de l'application
 tests_unitaires:
@@ -42,5 +41,3 @@ tests_unitaires:
     paths:
       - test-results/resultat_tests.xml
     when: always
-
-  
