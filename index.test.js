@@ -42,3 +42,20 @@ describe('GET /', () => {
     expect(res.headers.location).toBe('/albums');
   });
 });
+
+// Test de la route POST /album/create
+describe('POST /album/create', () => {
+  it('should create a new album', async () => {
+    const albumData = { albumTitle: 'Test Album' };
+    // Nous espionnons la méthode Album.create avec Sinon
+    const createStub = sinon.stub(Album, 'create').resolves();
+    return request(app) // Retour de la promesse
+      .post('/album/create')
+      .send(albumData)
+      .expect(302)
+      .then(res => { // Utilisation de then pour vérifier la redirection et l'appel à Album.create
+        sinon.assert.calledWith(createStub, { title: albumData.albumTitle });
+        expect(res.headers.location).toBe('/albums');
+      });
+  });
+});

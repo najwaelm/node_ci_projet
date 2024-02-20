@@ -27,8 +27,8 @@ const createAlbum = async (req, res) => {
   //     title: req.body.albumTitle,
   // })
   //3
-  //gestion des erreurs : passer par try catch
-  try {
+  //gestion des erreurs : passer par try catch // pour que la lecture du code se poursuive même si des erreurs sont catch
+  try { 
     await Album.create({
       title: req.body.albumTitle,
     });
