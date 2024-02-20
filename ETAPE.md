@@ -17,7 +17,8 @@ npm install
 ```
 
 7 installer mongoDb Atlas
-8 Relier le ref de du projet GitLabgit remote add origin https://gitlab.com/tms-team1/node_ci_project.githttps://gitlab.com/Paul78330
+8 Relier le ref de du projet GitLab git remote add origin https://gitlab.com/tms-team1/node_ci_project.githttps://gitlab.com/Paul78330
+
 9 pousser vers le ref gitla
 
 ```
@@ -68,3 +69,10 @@ npm install sinon
 
 * le ficher à tester dois être en [nom_fichier].test.js
 * resoudre les différents dans index.test.js
+
+
+npm test
+docker-compose up test
+
+git remote add origin https://gitlab.com/najwaelm/node_ci_projet.git
+git push https://gitlab.com/najwaelm/node_ci_projet.git
