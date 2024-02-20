@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const app = express();
 const path = require("path");
 
+//Proposer une constante pour la connexion à notre bdd qui sera utilisée dans notre fichier index.js
 const DATABASE_URL = process.env.DATABASE_URL || 'mongodb://localhost:27017/phototheque';
 
 //3
