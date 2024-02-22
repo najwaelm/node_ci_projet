@@ -1,4 +1,4 @@
-### Etapes :
+### Etapes! :
 
 npm outdated
 npm update
